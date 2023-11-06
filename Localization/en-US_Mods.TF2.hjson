@@ -1,0 +1,245 @@
+# This file will automatically update with entries for new content after a build and reload
+
+Items: {
+	Pistol: {
+		Tooltip: ""
+		DisplayName: Pistol
+	}
+
+	Flamethrower: {
+		Tooltip: ""
+		DisplayName: Flamethrower
+	}
+
+	Bonesaw: {
+		Tooltip: ""
+		DisplayName: Bonesaw
+	}
+
+	Revolver: {
+		DisplayName: Revolver
+		Tooltip: ""
+	}
+
+	RocketLauncher: {
+		DisplayName: Rocket Launcher
+		Tooltip: ""
+	}
+
+	Shotgun: {
+		DisplayName: Shotgun
+		Tooltip: ""
+	}
+
+	flamethrower: {
+		DisplayName: flamethrower
+		Tooltip: ""
+	}
+
+	Wrench: {
+		DisplayName: Wrench
+		Tooltip: ""
+	}
+
+	CyclopsClassBag: {
+		DisplayName: Cyclops Class Bag
+		Tooltip: ""
+	}
+
+	EngineerClassBag: {
+		DisplayName: Engineer Class Bag
+		Tooltip: ""
+	}
+
+	HeavyClassBag: {
+		DisplayName: Heavy Class Bag
+		Tooltip: ""
+	}
+
+	MedicClassBag: {
+		DisplayName: Medic Class Bag
+		Tooltip: ""
+	}
+
+	PyroClassBag: {
+		DisplayName: Pyro Class Bag
+		Tooltip: ""
+	}
+
+	ScoutClassBag: {
+		DisplayName: Scout Class Bag
+		Tooltip: ""
+	}
+
+	SniperClassBag: {
+		DisplayName: Sniper Class Bag
+		Tooltip: ""
+	}
+
+	SoldierClassBag: {
+		DisplayName: Soldier Class Bag
+		Tooltip: ""
+	}
+
+	SpyClassBag: {
+		DisplayName: Spy Class Bag
+		Tooltip: ""
+	}
+
+	Bat: {
+		DisplayName: Bat
+		Tooltip: ""
+	}
+
+	DemomanClassBag: {
+		DisplayName: Demoman Class Bag
+		Tooltip: ""
+	}
+
+	Bottle: {
+		DisplayName: Bottle
+		Tooltip: ""
+	}
+
+	Fireaxe: {
+		DisplayName: Fireaxe
+		Tooltip: ""
+	}
+
+	MediGun: {
+		DisplayName: Medi Gun
+		Tooltip: Come over here! I promise I will heal you
+	}
+
+	ScatterShotgun: {
+		DisplayName: Scatter Shotgun
+		Tooltip: ""
+	}
+
+	SniperRifle: {
+		DisplayName: Sniper Rifle
+		Tooltip: ""
+	}
+
+	Knife: {
+		DisplayName: Knife
+		Tooltip: ""
+	}
+
+	Shovel: {
+		DisplayName: Shovel
+		Tooltip: ""
+	}
+
+	Fists: {
+		DisplayName: Fists
+		Tooltip: ""
+	}
+
+	GrenadeLauncher: {
+		DisplayName: Grenade Launcher
+		Tooltip: ""
+	}
+
+	Minigun: {
+		DisplayName: Minigun
+		Tooltip: ""
+	}
+
+	StickyBombLauncher: {
+		DisplayName: Sticky Bomb Launcher
+		Tooltip: ""
+	}
+
+	SyringeGun: {
+		DisplayName: Syringe Gun
+		Tooltip: ""
+	}
+
+	Kukri: {
+		DisplayName: Kukri
+		Tooltip: ""
+	}
+
+	SMG: {
+		DisplayName: S M G
+		Tooltip: ""
+	}
+
+	MarketGardener: {
+		DisplayName: Market Gardener
+		Tooltip: ""
+	}
+
+	SpyIdentifier: {
+		Tooltip: ""
+		DisplayName: Spy Identifier
+	}
+
+	DisguiseKit: {
+		Tooltip: ""
+		DisplayName: Disguise Kit
+	}
+
+	SoldierIdentifier: {
+		Tooltip: ""
+		DisplayName: Soldier Identifier
+	}
+
+	SniperIdentifier: {
+		Tooltip: ""
+		DisplayName: Sniper Identifier
+	}
+
+	ScoutIdentifier: {
+		Tooltip: ""
+		DisplayName: Scout Identifier
+	}
+
+	PyroIdentifier: {
+		Tooltip: ""
+		DisplayName: Pyro Identifier
+	}
+
+	MedicIdentifier: {
+		Tooltip: ""
+		DisplayName: Medic Identifier
+	}
+
+	HeavyIdentifier: {
+		Tooltip: ""
+		DisplayName: Heavy Identifier
+	}
+
+	EngineerIdentifier: {
+		Tooltip: ""
+		DisplayName: Engineer Identifier
+	}
+
+	DemomanIdentifier: {
+		Tooltip: ""
+		DisplayName: Demoman Identifier
+	}
+}
+
+Projectiles: {
+	BonesawProj.DisplayName: Bonesaw Proj
+	flamethrowerProj.DisplayName: flamethrower Proj
+	FlamethrowerProj.DisplayName: Flamethrower Proj
+	HealBeamProj.DisplayName: Heal Beam Proj
+	SyringeProj.DisplayName: Syringe Proj
+	Rocket.DisplayName: Rocket
+	Bullet.DisplayName: Bullet
+	BlankBullet.DisplayName: Blank Bullet
+}
+
+Keybinds.Reload.DisplayName: Reload
+
+Buffs: {
+	HealEffect: {
+		Description: Mods.TF2.Buffs.HealEffect.Description
+		DisplayName: Heal Effect
+	}
+}
+
+UI.ExampleResource: Mods.TF2.UI.ExampleResource
