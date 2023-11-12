@@ -11,8 +11,10 @@ namespace TF2
     internal class TF2Player : ModPlayer
     {
         public TagCompound AmmoData = new TagCompound();
+
         public string TF2Class = "";
         public string TF2Disguise = "";
+
         public bool IsDev = true;
         public bool isRed = false;
         public NPC MouseOver; //CHANGE TO PLAYER 
@@ -105,6 +107,7 @@ namespace TF2
             int x = (int)Main.MouseWorld.X;
             int y = (int)Main.MouseWorld.Y;
             MouseOver = null;
+            
             for (int i = 0; i < Main.npc.Length; i++) {
                 if (Main.npc[i].getRect().Contains(x, y)) {
                     MouseOver = Main.npc[i];

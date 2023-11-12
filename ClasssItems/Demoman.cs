@@ -14,45 +14,42 @@ namespace TF2.ClassItems
 
             Item.shoot = ProjectileID.Grenade;
             Item.useStyle = ItemUseStyleID.Shoot;
-            WeaponData(4, 16, .6f, 1.24f);
+            WeaponData(4, 16, .6f, 1.24f, Sounds.grenadelauncher_shoot);
 
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if(!CanShoot()) return false;
+            if(!CanShoot(player)) return false;
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
     public class StickyBombLauncher : TF2Weapon
     {
+        public Projectile[] Explosives;
         public override string Texture => Mod.Name + "/Assets/Textures/Demoman/" + Name;
-        public override void SetDefaults()
-        {
+        public override void SetDefaults(){
             Item.shoot = ProjectileID.StickyGrenade;
+            
             Item.useStyle = ItemUseStyleID.Shoot;
-            WeaponData(8, 24, .6f, 1.09f);
-
+            WeaponData(8, 24, .6f, 1.09f, Sounds.stickybomblaunher_shoot);
         }
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            if(!CanShoot()) return false;
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+            if(!CanShoot(player)) return false;
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
     public  class Bottle : TF2Weapon
     {
         public override string Texture => Mod.Name + "/Assets/Textures/Demoman/" + Name;
-        public override void SetDefaults()
-        {
+        public override void SetDefaults(){
             Item.CloneDefaults(ItemID.CopperBroadsword);
-            WeaponData(-1, -1, 48, -1, true);
+            MeleeWeapon(.8f);
         }
     }
     public class DemomanClassBag : ModItem
     {
         public override string Texture => Mod.Name + "/Assets/Textures/Demoman/" + Name;
-        public override void SetDefaults()
-        {
+        public override void SetDefaults(){
             Item.useStyle = 4;
             Item.consumable = true;
             Item.width = 32;

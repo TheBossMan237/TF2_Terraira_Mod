@@ -13,10 +13,10 @@ namespace TF2.ClassItems {
         public override void SetDefaults(){
             Item.scale = .5f;
             Item.shoot = ProjectileID.Bullet;
-            WeaponData(12, 36, .12f, 1.025f);
+            WeaponData(12, 36, .12f, 1.025f, Sounds.pistol_shoot);
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
-            if (!CanShoot()) return false;
+            if (!CanShoot(player)) return false;
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
 
@@ -29,11 +29,12 @@ namespace TF2.ClassItems {
         public override void SetDefaults(){
             Item.scale = .75f;
             Item.shoot = ProjectileID.Bullet;
-            WeaponData(6, 32, .625f, .51f);
+            WeaponData(6, 32, .825f, .51f, Sounds.shotgun_shoot);
+            
             
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
-            if (!CanShoot()) return false;
+            if (!CanShoot(player)) return false;
             const int NumBullets = 8;
             for (int i = 0; i < NumBullets; i++){
                 Vector2 vel = velocity.RotatedByRandom(MathHelper.ToRadians(15));

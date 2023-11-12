@@ -5,6 +5,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using TF2.Proj;
 using TF2.Utills;
+using TF2.Assets;
 
 namespace TF2.ClassItems
 {
@@ -20,7 +21,7 @@ namespace TF2.ClassItems
 
             Item.useStyle = ItemUseStyleID.Swing;
             Item.autoReuse = true;
-            WeaponData(-1, -1, .8f, -1, true);
+            MeleeWeapon(.8f);
 
         }
     }
@@ -34,7 +35,7 @@ namespace TF2.ClassItems
         public override void SetDefaults(){
             Item.damage = 14;
             Item.shoot = ModContent.ProjectileType<FlamethrowerProj>();
-            WeaponData(200, -1, .075f, -1);
+            WeaponData(200, -1, .075f, -1, Sounds.flamethrower_shoot);
 
         }
         public override void HoldItem(Player player){
@@ -48,7 +49,7 @@ namespace TF2.ClassItems
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
-            if (!CanShoot()) return false;
+            if (!CanShoot(player)) return false;
 
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }

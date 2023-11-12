@@ -4,6 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using TF2.Utills;
+using TF2.Assets;
 
 namespace TF2.ClassItems
 {
@@ -14,7 +15,7 @@ namespace TF2.ClassItems
         {
             Item.CloneDefaults(ItemID.CopperBroadsword);
             Item.useStyle = ItemUseStyleID.Swing;
-            WeaponData(-1, -1, .5f, -1, true);
+            MeleeWeapon(.5f);
 
             
             Item.autoReuse = true;
@@ -65,14 +66,14 @@ namespace TF2.ClassItems
             Item.height = 16;
             Item.shootSpeed = 5f;
             Item.shoot = ProjectileID.Bullet;
-            WeaponData(6, 32, .625f, .7f);
+            WeaponData(6, 32, .625f, .7f, Sounds.shotgun_shoot);
             
 
 
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (!CanShoot()) return false;
+            if (!CanShoot(player)) return false;
             const int NumBullets = 8;
             for (int i = 0; i < NumBullets; i++)
             {

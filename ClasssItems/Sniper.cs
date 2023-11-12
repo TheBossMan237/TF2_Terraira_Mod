@@ -3,8 +3,11 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using TF2.Utills;
+using TF2.Assets;
+
 namespace TF2.ClassItems {
-    internal class Kukri : ModItem
+    internal class Kukri : TF2Weapon
     {
         public override string Texture => Mod.Name + "/Assets/Textures/Sniper/" + Name;
         public override void SetDefaults()
@@ -55,27 +58,14 @@ namespace TF2.ClassItems {
             Item.accessory = true;
         }
     }
-    public class SMG : ModItem
+    public class SMG : TF2Weapon
     {
         public override string Texture => Mod.Name + "/Assets/Textures/Sniper/" + Name;
 
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults(){
+            WeaponData(25, 75, 0.105f, 1.1f, Sounds.smg_shoot);
 
-            Item.scale = .5f;
-            Item.damage = 14;
-            Item.useTime = 1;
-            Item.useAnimation = 1;
-            Item.width = 54;
-            Item.height = 20;
-            Item.shoot = AmmoID.Bullet;
-            Item.holdStyle = 0;
-            Item.useStyle = ItemUseStyleID.Shoot;
-
-            Item.shootSpeed = 5f;
-            Item.noMelee = true;
-            Item.autoReuse = true;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
@@ -84,20 +74,13 @@ namespace TF2.ClassItems {
 
         }
     }
-    internal class SniperRifle : ModItem
+    internal class SniperRifle : TF2Weapon
     {
         public override string Texture => Mod.Name + "/Assets/Textures/Sniper/" + Name;
-        public override void SetDefaults()
-        {
-            Item.width = 62;
-            Item.height = 24;
-            Item.shoot = ProjectileID.Bullet;
-            Item.useAnimation = 1;
-            Item.useTime = 1;
-            Item.autoReuse = true;
+        public override void SetDefaults(){
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.shootSpeed = 5f;
-
+            Item.shoot = ProjectileID.Bullet;
+            WeaponData(25, -1, 1.5f, -1f, Sounds.sniper_shoot);
         }
     }
 }

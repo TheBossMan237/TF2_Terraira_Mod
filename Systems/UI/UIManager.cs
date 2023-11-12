@@ -33,7 +33,6 @@ namespace TF2.Systems.UI {
 			UberChargePercent.Width.Set(132, 0f);
 			UberChargePercent.Height.Set(60, 0f);
 			UberChargePercent.HAlign =.05f;
-			//UberchargeTextBackground
 			
 			
 			area.Append(AmmoText);
@@ -41,9 +40,10 @@ namespace TF2.Systems.UI {
 			Append(area);
 		}	
 
+
 		public override void Update(GameTime gameTime) {
 			TF2Player modPlayer = Main.LocalPlayer.GetModPlayer<TF2Player>();
-			AmmoText.SetText(modPlayer.HeldItemData.formated);
+			AmmoText.SetText(modPlayer.AmmoText);
 			base.Update(gameTime);
 		}
 	}

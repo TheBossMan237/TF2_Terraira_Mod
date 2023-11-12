@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using TF2.Proj;
 using TF2.Utills;
+using TF2.Assets;
 
 namespace TF2.ClassItems
 {
@@ -13,7 +14,7 @@ namespace TF2.ClassItems
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.CopperBroadsword);
-            WeaponData(-1, -1, .96f, -1, true);
+            MeleeWeapon(.8f);
             base.SetDefaults();
         }
     }
@@ -22,7 +23,7 @@ namespace TF2.ClassItems
         public override string Texture => Mod.Name + "/Assets/Textures/Soldier/" + Name;
         public override void SetDefaults(){
             Item.CloneDefaults(ItemID.CopperBroadsword);
-            WeaponData(-1, -1, .96f, -1, true);
+            MeleeWeapon(.8f);
         }
     }
     internal class SoldierClassBag : ModItem
@@ -66,11 +67,11 @@ namespace TF2.ClassItems
         {
             Item.shoot = ModContent.ProjectileType<Rocket>();
             Item.useStyle = ItemUseStyleID.Shoot;
-            WeaponData(4, 20, .8f, .92f);
+            WeaponData(4, 20, .8f, .92f, Sounds.rocket_launcher_shoot);
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if(!CanShoot()) return false;
+            if(!CanShoot(player)) return false;
 
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }

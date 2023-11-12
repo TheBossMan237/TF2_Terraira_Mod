@@ -48,7 +48,7 @@ namespace TF2.ClassItems {
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.CopperBroadsword);
-            WeaponData(-1, -1, 48, -1, true);
+            MeleeWeapon(.8f);
         }
     }
 }

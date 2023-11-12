@@ -6,7 +6,7 @@ using TF2.Utills;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using TF2.Buffs;
-
+using TF2.Assets;
 
 namespace TF2.ClassItems
 {
@@ -17,11 +17,11 @@ namespace TF2.ClassItems
         public override void SetDefaults(){
             Item.scale = .75f;
             Item.shoot = ModContent.ProjectileType<SyringeProj>();
-            WeaponData(40, 150, .105f, 1.305f);
+            WeaponData(40, 150, .105f, 1.305f, Sounds.syringegun_shoot);
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (!CanShoot()) return false;
+            if (!CanShoot(player)) return false;
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
 
@@ -33,17 +33,14 @@ namespace TF2.ClassItems
             Item.width = 54;
             Item.height = 20;
             Item.shoot = ModContent.ProjectileType<BlankBullet>();
-            WeaponData(-1, -1, 0, -1);
-
+            WeaponData(-1, -1, 0, -1, Sounds.medigun_heal);
 
         }
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            if (!CanShoot()) { return false; }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+            if (!CanShoot(player)) { return false; }
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
-        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
-        {
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone){
 
             base.OnHitNPC(player, target, hit, damageDone);
 
@@ -63,10 +60,11 @@ namespace TF2.ClassItems
             Item.useAnimation = 1;
             Item.height = 32;
         }
-        public override bool? UseItem(Player player)
-        {
-            TF2Player p = player.GetModPlayer<TF2Player>();
+        public override bool? UseItem(Player player){
 
+
+
+            TF2Player p = player.GetModPlayer<TF2Player>();
             p.ClearHotbar();
             p.GiveItem<MediGun>(0);
             player.hair = 115;
@@ -84,30 +82,17 @@ namespace TF2.ClassItems
     internal class MedicIdentifier : ModItem
     {
         public override string Texture => $"{nameof(TF2)}/Assets/Textures/Medic/MedicIdentifier";
-        public override void SetDefaults()
-        {
+        public override void SetDefaults(){
+            
+
             Item.accessory = true;
         }
     }
-    public class Bonesaw : ModItem
-    {
+    public class Bonesaw : TF2Weapon{
         public override string Texture => $"{nameof(TF2)}/Assets/Textures/Medic/Bonesaw";
-        // The Display Name and Tooltip of this item can be edited in the Localization/en-US_Mods.TF2.hjson file.
-        public override void SetDefaults()
-        {
+        public override void SetDefaults(){
 
-            Item.damage = 65;
-            Item.DamageType = DamageClass.Melee;
-            Item.width = 60;
-            Item.height = 26;
-            Item.useTime = 1;
-            Item.useAnimation = 1;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 6;
-            Item.value = 10000;
-            Item.rare = 2;
-            Item.UseSound = SoundID.Item7;
-            Item.autoReuse = true;
+            MeleeWeapon(.8f);
         }
     }
 }

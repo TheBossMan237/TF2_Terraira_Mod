@@ -4,6 +4,7 @@ using Terraria;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using TF2.Utills;
+using TF2.Assets;
 
 namespace TF2.ClassItems
 {
@@ -12,7 +13,7 @@ namespace TF2.ClassItems
         public int counter = 0;
         public override void SetDefaults(){
             Item.CloneDefaults(ItemID.JimsDrone);
-            WeaponData(-1, -1, 1, -1, true);
+            MeleeWeapon(1);
         }
         public override bool? UseItem(Player player)
         {
@@ -25,7 +26,7 @@ namespace TF2.ClassItems
         public override string Texture => Mod.Name + "/Assets/Textures/Spy/" + Name;
         public override void SetDefaults(){
             Item.CloneDefaults(ItemID.CopperBroadsword);
-            WeaponData(-1, -1, .8f, -1, true);
+            MeleeWeapon(.8f);
         }
     }
     internal class Revolver : TF2Weapon
@@ -33,7 +34,7 @@ namespace TF2.ClassItems
         public override string Texture => Mod.Name + "/Assets/Textures/Spy/" + Name;
         public override void SetDefaults()
         {
-            WeaponData(6, 24, .5f, 1.113f);
+            WeaponData(6, 24, .5f, 1.113f, Sounds.revolver_shoot);
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 5f;
 
@@ -45,7 +46,7 @@ namespace TF2.ClassItems
             .Register();
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
-            if (!CanShoot()) return false;
+            if (!CanShoot(player)) return false;
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
