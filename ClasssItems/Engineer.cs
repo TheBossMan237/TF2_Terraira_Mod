@@ -18,16 +18,11 @@ namespace TF2.ClassItems {
         }
         public override bool? UseItem(Player player)
         {
-            TF2Player p = player.GetModPlayer<TF2Player>();
-            p.ClearHotbar();
-            p.GiveItem<Shotgun>(0);
-            p.GiveItem<Pistol>(1);
-            p.GiveItem<Wrench>(2);
-            p.GiveEquipment(new Item(ItemID.EngineeringHelmet), 0);
-            p.GiveEquipment(new Item(ItemID.FamiliarShirt), 1);
-            p.GiveEquipment(new Item(ItemID.FamiliarPants), 2);
-            p.GiveEquipment<EngineerIdentifier>();
-
+            Helper.Loadout<Shotgun, Pistol, Wrench, EngineerIdentifier>(
+                player,
+                ItemID.EngineeringHelmet,
+                ItemID.MiningShirt
+            ) ;
             return base.UseItem(player);
         }
 
@@ -36,8 +31,7 @@ namespace TF2.ClassItems {
     {
         public override string Texture => Mod.Name + "/Assets/Textures/Engineer/" + Name;
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults(){
             Item.accessory = true;
         }
     }

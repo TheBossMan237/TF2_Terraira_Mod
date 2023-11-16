@@ -40,12 +40,7 @@ namespace TF2.ClassItems {
         }
         public override bool? UseItem(Player player)
         {
-            TF2Player p = player.GetModPlayer<TF2Player>();
-            p.ClearHotbar();
-            p.GiveItem<SniperRifle>(0);
-            p.GiveItem<SMG>(1);
-            p.GiveItem<Kukri>(2);
-            p.GiveEquipment<SniperIdentifier>();
+            Helper.Loadout<SniperRifle, SMG, Kukri, SniperIdentifier>(player);
 
             return base.UseItem(player);
         }
@@ -64,12 +59,13 @@ namespace TF2.ClassItems {
 
 
         public override void SetDefaults(){
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.shoot = ProjectileID.Bullet;
             WeaponData(25, 75, 0.105f, 1.1f, Sounds.smg_shoot);
 
         }
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+            if (!CanShoot(player)) return false;
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
 
         }
@@ -80,7 +76,11 @@ namespace TF2.ClassItems {
         public override void SetDefaults(){
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shoot = ProjectileID.Bullet;
-            WeaponData(25, -1, 1.5f, -1f, Sounds.sniper_shoot);
+            WeaponData(25, -1, 30f, -1f, Sounds.sniper_shoot);
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
+            if (!CanShoot(player)) return false;
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
 }

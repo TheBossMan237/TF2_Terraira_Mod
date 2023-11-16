@@ -63,24 +63,15 @@ namespace TF2.ClassItems
         public override bool? UseItem(Player player){
 
 
-
-            TF2Player p = player.GetModPlayer<TF2Player>();
-            p.ClearHotbar();
-            p.GiveItem<MediGun>(0);
+            Helper.Loadout<MediGun, SyringeGun, Bonesaw, MedicIdentifier>(
+                player,
+                Chesplate:ItemID.DrManFlyLabCoat
+            );
             player.hair = 115;
-            p.GiveItem<SyringeGun>(1);
-            p.GiveItem<Bonesaw>(2);
-            player.hair = 115;
-            p.GiveEquipment(new Item(ItemID.DrManFlyLabCoat), 1);
-            p.GiveEquipment(new Item(ItemID.FamiliarPants), 2);
-
-            p.GiveEquipment<MedicIdentifier>();
-
             return base.UseItem(player);
         }
     }
-    internal class MedicIdentifier : ModItem
-    {
+    internal class MedicIdentifier : ModItem{
         public override string Texture => $"{nameof(TF2)}/Assets/Textures/Medic/MedicIdentifier";
         public override void SetDefaults(){
             

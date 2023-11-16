@@ -173,53 +173,54 @@ namespace TF2.Utills {
         }
         public static void Loadout<Primary, Secondary, Melee, Identifier>(Player p, int Helmet = 271, int Chesplate = 269, int Leggings = 270)
         where Primary : ModItem where Secondary : ModItem where Melee : ModItem where Identifier : ModItem {
-            Loadout(p, Helmet, Chesplate, Leggings, new int[] {
+            Loadout(p, ModContent.ItemType<Identifier>(), Helmet, Chesplate, Leggings,
                 ModContent.ItemType<Primary>(),
                 ModContent.ItemType<Secondary>(),
-                ModContent.ItemType<Melee>(),
-                ModContent.ItemType<Identifier>()
-            });
+                ModContent.ItemType<Melee>()
+            );
         }
         public static void Loadout<Primary, Secondary, Melee, PDA1, PDA2, Identifier>(Player p, int Helmet = 271, int Chesplate = 269, int Leggings = 270)
         where Primary : ModItem where Secondary : ModItem where Melee : ModItem
         where PDA1 : ModItem where PDA2 : ModItem
         where Identifier : ModItem {
-            Loadout(p, Helmet, Chesplate, Leggings, new int[] {
+            Loadout(p, ModContent.ItemType<Identifier>(), Helmet, Chesplate, Leggings,
                 ModContent.ItemType<Primary>(),
                 ModContent.ItemType<Secondary>(),
                 ModContent.ItemType<Melee>(),
                 ModContent.ItemType<PDA1>(),
-                ModContent.ItemType<PDA2>(),
-                ModContent.ItemType<Identifier>()
-            });
+                ModContent.ItemType<PDA2>()
+            );
         }
 
         public static void Loadout<Primary, Secondary, Melee, PDA1, Identifier>(Player p, int Helmet = 271, int Chesplate = 269, int Leggings=270)
         where Primary : ModItem where Secondary : ModItem where Melee : ModItem
         where PDA1 : ModItem where Identifier : ModItem {
-            Loadout(p, Helmet, Chesplate, Leggings, new int[] {
+            Loadout(p, ModContent.ItemType<Identifier>(), Helmet, Chesplate, Leggings, 
                 ModContent.ItemType<Primary>(),
                 ModContent.ItemType<Secondary>(),
                 ModContent.ItemType<Melee>(),
-                ModContent.ItemType<PDA1>(),
-                ModContent.ItemType<Identifier>()
-            });
-        }
-
-
-        private static void Loadout(Player p, int Helemt = 271, int Chesplate = 269, int Leggings = 270, params int[] items) {
-            for (int i = 0; i < 50; i++) {
-                if (i < 3) {
-                    p.Loadouts[i].Armor[0] = new Item(Helemt);
-                    p.Loadouts[i].Armor[1] = new Item(Chesplate);
-                    p.Loadouts[i].Armor[2] = new Item(Leggings);
-                    p.Loadouts[i].Armor[3] = new Item(items.Last());
-                }
-                if (i < items.Length - 1 ) {
-                    p.inventory[i] = new Item(items[i]);
-                } else p.inventory[i] = empty;
+                ModContent.ItemType<PDA1>()
                 
+            );
+        }
+        
+
+        private static void Loadout(Player p, int Identifier, int Helemt = 271, int Chesplate = 269, int Leggings = 270, params int[] items) {
+            Array.Fill(p.inventory, empty);
+            for (int i = 0; i < items.Length; i++) {
+                p.inventory[i] = new Item(items[i]);
             }
+            p.armor[0] = new Item(Helemt);
+            p.armor[1] = new Item(Chesplate);
+            p.armor[2] = new Item(Leggings);
+            p.armor[3] = new Item(Identifier);
+            for (int i = 0; i < 3; i++) {
+                p.Loadouts[i].Armor[0] = p.armor[0];
+                p.Loadouts[i].Armor[1] = p.armor[1];
+                p.Loadouts[i].Armor[2] = p.armor[2];
+                p.Loadouts[i].Armor[3] = p.armor[3];
+            }
+
 
         }
         

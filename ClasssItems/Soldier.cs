@@ -40,15 +40,7 @@ namespace TF2.ClassItems
         }
         public override bool? UseItem(Player player)
         {
-            TF2Player p = player.GetModPlayer<TF2Player>();
-            p.ClearHotbar();
-            p.GiveItem<RocketLauncher>(0);
-            p.GiveItem<Shotgun>(1);
-            p.GiveItem<Shovel>(2);
-            p.GiveEquipment(new Item(ItemID.FamiliarWig), 0);
-            p.GiveEquipment(new Item(ItemID.FamiliarShirt), 1);
-            p.GiveEquipment(new Item(ItemID.FamiliarPants), 2);
-            p.GiveEquipment<SoldierIdentifier>();
+            Helper.Loadout<RocketLauncher, Shotgun, Shovel, SoldierIdentifier>(player);
             return base.UseItem(player);
         }
     }

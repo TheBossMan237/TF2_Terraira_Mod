@@ -60,20 +60,12 @@ namespace TF2.ClassItems
             Item.width = 32;
             Item.height = 32;
         }
-        public override bool? UseItem(Player player)
-        {
-            TF2Player p = player.GetModPlayer<TF2Player>();
-            p.TF2Class = "Spy";
-            p.ClearInvetory();
-            p.GiveItem<Revolver>(0);
-            p.GiveItem<Knife>(1);
-            p.GiveItem<DisguiseKit>(2);
-            p.GiveEquipment<SpyIdentifier>(3);
-            p.GiveEquipment(new Item(ItemID.MiningHelmet), 0);
-            p.GiveEquipment(new Item(ItemID.TuxedoShirt), 1);
-            p.GiveEquipment(new Item(ItemID.TuxedoPants), 2);
-
-
+        public override bool? UseItem(Player player){
+            Helper.Loadout<Revolver, Knife, DisguiseKit, SpyIdentifier>(
+                player,
+                Chesplate:ItemID.TuxedoShirt,
+                Leggings:ItemID.TuxedoPants
+            );
             return base.UseItem(player);
         }
         public override bool CanRightClick()

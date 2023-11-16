@@ -8,10 +8,11 @@ using TF2.Assets;
 using TF2.Utills;
 namespace TF2.ClassItems
 {
+    
     public class GrenadeLauncher : TF2Weapon{
+        
         public override string Texture => Mod.Name + "/Assets/Textures/Demoman/" + Name;
         public override void SetDefaults(){
-
             Item.shoot = ProjectileID.Grenade;
             Item.useStyle = ItemUseStyleID.Shoot;
             WeaponData(4, 16, .6f, 1.24f, Sounds.grenadelauncher_shoot);
@@ -60,8 +61,7 @@ namespace TF2.ClassItems
 
         public override bool? UseItem(Player player)
         {
-            TF2Player p = player.GetModPlayer<TF2Player>();
-            p.Loadout<GrenadeLauncher, StickyBombLauncher, Bottle, DemomanIdentifier>();
+            Helper.Loadout<GrenadeLauncher, StickyBombLauncher, Kukri, DemomanIdentifier>(player);
 
 
             return base.UseItem(player);
