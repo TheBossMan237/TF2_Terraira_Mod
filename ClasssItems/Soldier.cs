@@ -8,6 +8,7 @@ using TF2.Utills;
 using TF2.Assets;
 
 namespace TF2.ClassItems
+    
 {
     public class MarketGardener : TF2Weapon {
         public override string Texture => Mod.Name + "/Assets/Textures/Soldier/" + Name;
@@ -24,6 +25,7 @@ namespace TF2.ClassItems
         public override void SetDefaults(){
             Item.CloneDefaults(ItemID.CopperBroadsword);
             MeleeWeapon(.8f);
+            
         }
     }
     internal class SoldierClassBag : ModItem
@@ -65,7 +67,7 @@ namespace TF2.ClassItems
         {
             if(!CanShoot(player)) return false;
 
-            return base.Shoot(player, source, position, velocity, type, damage, knockback);
+            return base.Shoot(player, source, position, velocity, type, 1, 10);
         }
     }
 }

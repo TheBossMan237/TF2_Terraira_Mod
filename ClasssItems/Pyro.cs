@@ -38,15 +38,6 @@ namespace TF2.ClassItems
             WeaponData(200, -1, .075f, -1, Sounds.flamethrower_shoot);
 
         }
-        public override void HoldItem(Player player){
-            if (!isShooting)
-            {
-                TimePassed = 0;
-            }
-
-            isShooting = false;
-            base.HoldItem(player);
-        }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback){
             if (!CanShoot(player)) return false;

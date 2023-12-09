@@ -1,14 +1,12 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using TF2.Assets;
-
+using TF2.ClassItems;
+using TF2.Proj;
 namespace TF2.Utills {
     public abstract class TF2Weapon : ModItem {
         public int dt = 0;
@@ -19,8 +17,9 @@ namespace TF2.Utills {
         public int ReloadTime;
         public int MaxAmmoHeld;
         public int MaxAmmoInGun;
+
         public SoundStyle ShootSound = Assets.Sounds.shotgun_shoot;
-        public override void HoldStyle(Player player, Rectangle heldItemFrame){
+        public override void HoldStyle(Player player, Rectangle heldItemFrame) {
             player.itemRotation += .1f;
             base.HoldStyle(player, heldItemFrame);
         }
@@ -61,8 +60,11 @@ namespace TF2.Utills {
             Item.useStyle = 5;
             MaxAmmoHeld = AmmoHeld;
             MaxAmmoInGun = AmmoInGun;
-
         }
+
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -75,7 +77,7 @@ namespace TF2.Utills {
                 dt = 0;
                 SoundEngine.PlaySound(ShootSound, p.position);
                 AmmoInGun--;
-                
+
                 return true;
             } else if (dt2 < ReloadTime) {
                 dt2++;
@@ -92,6 +94,7 @@ namespace TF2.Utills {
         /// to a minigun or flamethrower in the way that reload time is 0 and no ammo is held
         /// no ammo is held
         /// </summary>
+
         public bool CanShootNoneHeld() {
             if (dt < AttackInterval) {
                 dt++;
@@ -116,6 +119,13 @@ namespace TF2.Utills {
         }
 
     }
+    public class Bags : ModCommand {
+        public override string Command => "Bags";
+        public override CommandType Type => CommandType.Chat;
+        public override void Action(CommandCaller caller, string input, string[] args) {
+            Helper.GiveClassBags(caller.Player);
+        }
+    }
     public class Reload : ModCommand {
         public override string Command => "Reload";
         public override CommandType Type => CommandType.Chat;
@@ -138,12 +148,12 @@ namespace TF2.Utills {
 
     public class Helper {
         public static readonly Item empty = new Item();
-        public static void Reload(Player p, int slot=-1) {
+        public static void Reload(Player p, int slot = -1) {
             TagCompound tag = new TagCompound();
             if (slot == -1) {
-                for (int i = 0; i <= 10; i++){
+                for (int i = 0; i <= 10; i++) {
                     Item item = p.inventory[i];
-                    if (item.ModItem != null){
+                    if (item.ModItem != null) {
                         tag = new TagCompound();
                         item.ModItem.LoadData(tag);
                         tag["AmmoInGun"] = tag["MaxAmmoInGun"];
@@ -151,7 +161,8 @@ namespace TF2.Utills {
                         item.ModItem.SaveData(tag);
                     }
                 }
-            } else {
+            }
+            else {
                 if (slot <= 0 || slot >= 10 || p.inventory[slot].ModItem == null) return;
                 p.inventory[slot].ModItem.LoadData(tag);
                 tag["AmmoInGun"] = tag["MaxAmmoInGun"];
@@ -172,7 +183,8 @@ namespace TF2.Utills {
 
         }
         public static void Loadout<Primary, Secondary, Melee, Identifier>(Player p, int Helmet = 271, int Chesplate = 269, int Leggings = 270)
-        where Primary : ModItem where Secondary : ModItem where Melee : ModItem where Identifier : ModItem {
+        where Primary : ModItem where Secondary : ModItem where Melee : ModItem where Identifier : ModItem
+        {
             Loadout(p, ModContent.ItemType<Identifier>(), Helmet, Chesplate, Leggings,
                 ModContent.ItemType<Primary>(),
                 ModContent.ItemType<Secondary>(),
@@ -182,7 +194,8 @@ namespace TF2.Utills {
         public static void Loadout<Primary, Secondary, Melee, PDA1, PDA2, Identifier>(Player p, int Helmet = 271, int Chesplate = 269, int Leggings = 270)
         where Primary : ModItem where Secondary : ModItem where Melee : ModItem
         where PDA1 : ModItem where PDA2 : ModItem
-        where Identifier : ModItem {
+        where Identifier : ModItem
+        {
             Loadout(p, ModContent.ItemType<Identifier>(), Helmet, Chesplate, Leggings,
                 ModContent.ItemType<Primary>(),
                 ModContent.ItemType<Secondary>(),
@@ -192,18 +205,19 @@ namespace TF2.Utills {
             );
         }
 
-        public static void Loadout<Primary, Secondary, Melee, PDA1, Identifier>(Player p, int Helmet = 271, int Chesplate = 269, int Leggings=270)
+        public static void Loadout<Primary, Secondary, Melee, PDA1, Identifier>(Player p, int Helmet = 271, int Chesplate = 269, int Leggings = 270)
         where Primary : ModItem where Secondary : ModItem where Melee : ModItem
-        where PDA1 : ModItem where Identifier : ModItem {
-            Loadout(p, ModContent.ItemType<Identifier>(), Helmet, Chesplate, Leggings, 
+        where PDA1 : ModItem where Identifier : ModItem
+        {
+            Loadout(p, ModContent.ItemType<Identifier>(), Helmet, Chesplate, Leggings,
                 ModContent.ItemType<Primary>(),
                 ModContent.ItemType<Secondary>(),
                 ModContent.ItemType<Melee>(),
                 ModContent.ItemType<PDA1>()
-                
+
             );
         }
-        
+
 
         private static void Loadout(Player p, int Identifier, int Helemt = 271, int Chesplate = 269, int Leggings = 270, params int[] items) {
             Array.Fill(p.inventory, empty);
@@ -223,8 +237,25 @@ namespace TF2.Utills {
 
 
         }
-        
+        public static string GiveClassBags(Player p) {
+            string Out = "";
+            if (p.armor[3].ModItem != null) {
+                Out = p.armor[3].Name.Split(" Identifier")[0];
+            }
+            ClearAllItems(p);
+            p.inventory[0] = new Item(ModContent.ItemType<ScoutClassBag>());
+            p.inventory[1] = new Item(ModContent.ItemType<SoldierClassBag>());
+            p.inventory[2] = new Item(ModContent.ItemType<PyroClassBag>());
+            p.inventory[3] = new Item(ModContent.ItemType<DemomanClassBag>());
+            p.inventory[4] = new Item(ModContent.ItemType<HeavyClassBag>());
+            p.inventory[5] = new Item(ModContent.ItemType<EngineerClassBag>());
+            p.inventory[6] = new Item(ModContent.ItemType<SniperClassBag>());
+            p.inventory[7] = new Item(ModContent.ItemType<MedicClassBag>());
+            p.inventory[8] = new Item(ModContent.ItemType<SpyClassBag>());
+            return Out;
+        }
     }
+
 
 
 }

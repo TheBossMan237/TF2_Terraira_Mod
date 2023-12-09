@@ -6,11 +6,10 @@ namespace TF2.Proj
 {
     internal class SyringeProj : ModProjectile
     {
-        public override void SetDefaults()
-        {
-            Projectile.width = 10; // The width of projectile hitbox
-            Projectile.height = 10; // The height of projectile hitbox
+        public override string Texture => Mod.Name + "/Assets/Textures/Projectiles/" + Name;
+        public override void SetDefaults(){
             Projectile.aiStyle = ProjAIStyleID.FlamingScythe;
+            
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = 100;

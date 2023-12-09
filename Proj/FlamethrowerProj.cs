@@ -8,6 +8,7 @@ namespace TF2.Proj
 {
     internal class FlamethrowerProj : ModProjectile
     {
+        public override string Texture => Mod.Name + "/Assets/Textures/Projectiles/" + Name;  
         public float Scale = 3;
         public override void SetDefaults()
         {

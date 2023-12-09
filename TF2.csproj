@@ -8,6 +8,21 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Textures\Sniper\Kukri.png" />
+    <None Remove="Assets\Textures\Sniper\SMG.png" />
+    <None Remove="Assets\Textures\Sniper\SniperClassBag.png" />
+    <None Remove="Assets\Textures\Sniper\SniperIdentifier.png" />
+    <None Remove="Assets\Textures\Sniper\SniperRifle.png" />
+    <None Remove="Assets\Textures\Soldier\MarketGardener.png" />
+    <None Remove="Assets\Textures\Soldier\RocketLauncher.png" />
+    <None Remove="Assets\Textures\Soldier\Shovel.png" />
+    <None Remove="Assets\Textures\Soldier\SoldierClassBag.png" />
+    <None Remove="Assets\Textures\Soldier\SoldierIdentifier.png" />
+    <None Remove="Assets\Textures\Spy\DisguiseKit.png" />
+    <None Remove="Assets\Textures\Spy\Knife.png" />
+    <None Remove="Assets\Textures\Spy\Revolver.png" />
+    <None Remove="Assets\Textures\Spy\SpyClassBag.png" />
+    <None Remove="Assets\Textures\Spy\SpyIdentifier.png" />
     <None Remove="Assets\Textures\Tiles\ExampleBlock.png" />
     <None Remove="Assets\Textures\Tiles\ExampleDresser.png" />
     <None Remove="Assets\Textures\Tiles\ExampleDresser_Highlight.png" />
@@ -25,6 +40,7 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Effects\" />
     <Folder Include="obj\Debug\net6.0\refint\" />
     <Folder Include="obj\Debug\net6.0\ref\" />
   </ItemGroup>

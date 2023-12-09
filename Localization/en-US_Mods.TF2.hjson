@@ -231,6 +231,8 @@ Projectiles: {
 	Rocket.DisplayName: Rocket
 	Bullet.DisplayName: Bullet
 	BlankBullet.DisplayName: Blank Bullet
+	StickyBomb.DisplayName: Sticky Bomb
+	Explosion.DisplayName: Explosion
 }
 
 Keybinds.Reload.DisplayName: Reload
